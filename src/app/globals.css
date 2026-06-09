@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@theme {
+  --color-breezy-green: #16a34a;
+  --color-breezy-green-light: #22c55e;
+  --color-breezy-green-dark: #15803d;
+  --color-breezy-green-muted: #dcfce7;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+body {
+  background: #ffffff;
+  color: #0a0a0a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: #dcfce7;
+  color: #0a0a0a;
+}
+
+.text-gradient-green {
+  background: linear-gradient(135deg, #15803d 0%, #16a34a 40%, #22c55e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.badge-gradient-green {
+  background: linear-gradient(135deg, #15803d 0%, #16a34a 45%, #22c55e 100%);
+}
