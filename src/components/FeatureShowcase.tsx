@@ -3,17 +3,11 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { PhoneMockup } from "./iPhoneMockup";
-import { AddExpenseScreen } from "./screens/AddExpenseScreen";
-import { SettleUpScreen } from "./screens/SettleUpScreen";
-import { ComponentType } from "react";
-
 const features: {
   headline: string;
   description: string;
-  screen?: ComponentType;
-  image?: string;
-  imageAlt?: string;
+  image: string;
+  imageAlt: string;
 }[] = [
   {
     headline: "Create groups for anything.",
@@ -33,13 +27,15 @@ const features: {
     headline: "Add expenses in seconds.",
     description:
       "Record who paid, choose how to split the cost, and let Breezy handle the math automatically.",
-    screen: AddExpenseScreen,
+    image: "/Add-Expense-mockup.png",
+    imageAlt: "Breezy Add Expense screen for logging shared costs",
   },
   {
     headline: "Settle up with confidence.",
     description:
       "Pay friends using Venmo, Cash App, PayPal, or Zelle and keep balances accurate and organized.",
-    screen: SettleUpScreen,
+    image: "/Settle-Up-mockup.png",
+    imageAlt: "Breezy Settle Up screen with payment options",
   },
 ];
 
@@ -121,7 +117,6 @@ export function FeatureShowcase() {
               <div className="relative h-[500px] w-[242px] sm:h-[580px] sm:w-[280px] md:h-[620px] md:w-[300px]">
                 {features.map((feature, i) => {
                   const isActive = i === activeIndex;
-                  const ScreenComponent = feature.screen;
 
                   return (
                     <motion.div
@@ -136,20 +131,14 @@ export function FeatureShowcase() {
                       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                       style={{ pointerEvents: isActive ? "auto" : "none" }}
                     >
-                      {feature.image ? (
-                        <Image
-                          src={feature.image}
-                          alt={feature.imageAlt ?? feature.headline}
-                          width={300}
-                          height={650}
-                          className="h-auto w-full drop-shadow-2xl drop-shadow-black/15"
-                          priority={i <= 1}
-                        />
-                      ) : ScreenComponent ? (
-                        <PhoneMockup>
-                          <ScreenComponent />
-                        </PhoneMockup>
-                      ) : null}
+                      <Image
+                        src={feature.image}
+                        alt={feature.imageAlt}
+                        width={300}
+                        height={650}
+                        className="h-auto w-full drop-shadow-2xl drop-shadow-black/15"
+                        priority={i <= 1}
+                      />
                     </motion.div>
                   );
                 })}
