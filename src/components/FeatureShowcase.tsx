@@ -4,7 +4,6 @@ import { useRef, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { PhoneMockup } from "./iPhoneMockup";
-import { GroupsScreen } from "./screens/GroupsScreen";
 import { AddExpenseScreen } from "./screens/AddExpenseScreen";
 import { SettleUpScreen } from "./screens/SettleUpScreen";
 import { ComponentType } from "react";
@@ -20,7 +19,8 @@ const features: {
     headline: "Create groups for anything.",
     description:
       "From golf trips and vacations to roommates and events, organize expenses in dedicated groups and keep everyone on the same page.",
-    screen: GroupsScreen,
+    image: "/Group-mockup.png",
+    imageAlt: "Breezy Groups screen showing shared expense groups",
   },
   {
     headline: "Keep track of friends.",
@@ -74,7 +74,7 @@ export function FeatureShowcase() {
   const handleActive = useCallback((index: number) => setActiveIndex(index), []);
 
   return (
-    <section id="features" className="relative mt-32 pt-16 pb-24 md:mt-0 md:pt-0 md:pb-0">
+    <section id="features" className="relative mt-36 pt-20 pb-24 md:mt-0 md:pt-0 md:pb-0">
       <div
         className="relative"
         style={{ height: `${features.length * 100}vh` }}
@@ -83,7 +83,7 @@ export function FeatureShowcase() {
           <FeatureTrigger key={i} index={i} onActive={handleActive} />
         ))}
 
-        <div className="sticky top-[5.5rem] z-10 flex min-h-[calc(100dvh-5.5rem)] items-start pt-6 pb-10 md:top-0 md:h-screen md:min-h-0 md:items-center md:pt-0 md:pb-0">
+        <div className="sticky top-[6rem] z-10 flex min-h-[calc(100dvh-6rem)] items-start pt-10 pb-10 md:top-0 md:h-screen md:min-h-0 md:items-center md:pt-0 md:pb-0">
           <div className="mx-auto grid w-full max-w-6xl items-center gap-16 px-6 md:gap-12 lg:grid-cols-2 lg:gap-20">
             <div className="order-2 lg:order-1">
               <AnimatePresence mode="wait">
@@ -117,7 +117,7 @@ export function FeatureShowcase() {
               </AnimatePresence>
             </div>
 
-            <div className="order-1 flex justify-center pt-2 lg:order-2 lg:pt-0">
+            <div className="order-1 flex justify-center pt-4 lg:order-2 lg:pt-0">
               <div className="relative h-[500px] w-[242px] sm:h-[580px] sm:w-[280px] md:h-[620px] md:w-[300px]">
                 {features.map((feature, i) => {
                   const isActive = i === activeIndex;
@@ -143,7 +143,7 @@ export function FeatureShowcase() {
                           width={300}
                           height={650}
                           className="h-auto w-full drop-shadow-2xl drop-shadow-black/15"
-                          priority={i === 1}
+                          priority={i <= 1}
                         />
                       ) : ScreenComponent ? (
                         <PhoneMockup>
