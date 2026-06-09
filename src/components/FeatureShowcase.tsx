@@ -51,7 +51,9 @@ function FeatureTrigger({
   onActive: (index: number) => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { margin: "-45% 0px -45% 0px" });
+  const isInView = useInView(ref, {
+    margin: "-40% 0px -40% 0px",
+  });
 
   useEffect(() => {
     if (isInView) onActive(index);
@@ -72,7 +74,7 @@ export function FeatureShowcase() {
   const handleActive = useCallback((index: number) => setActiveIndex(index), []);
 
   return (
-    <section id="features" className="relative">
+    <section id="features" className="relative mt-16 pt-8 md:mt-0 md:pt-0">
       <div
         className="relative"
         style={{ height: `${features.length * 100}vh` }}
@@ -81,7 +83,7 @@ export function FeatureShowcase() {
           <FeatureTrigger key={i} index={i} onActive={handleActive} />
         ))}
 
-        <div className="sticky top-0 z-10 flex h-screen items-center">
+        <div className="sticky top-24 z-10 flex h-[calc(100dvh-6rem)] items-center md:top-0 md:h-screen">
           <div className="mx-auto grid w-full max-w-6xl items-center gap-12 px-6 lg:grid-cols-2 lg:gap-20">
             <div className="order-2 lg:order-1">
               <AnimatePresence mode="wait">
