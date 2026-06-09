@@ -31,7 +31,7 @@ const floatingCards = [
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pt-32 pb-32 sm:pt-40 sm:pb-28">
+    <section className="relative overflow-hidden pt-32 pb-40 sm:pt-40 sm:pb-28">
       <div className="relative mx-auto max-w-6xl px-6">
         <motion.div
           variants={staggerContainer}

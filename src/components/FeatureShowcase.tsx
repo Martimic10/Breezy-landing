@@ -74,7 +74,7 @@ export function FeatureShowcase() {
   const handleActive = useCallback((index: number) => setActiveIndex(index), []);
 
   return (
-    <section id="features" className="relative mt-16 pt-8 md:mt-0 md:pt-0">
+    <section id="features" className="relative mt-32 pt-16 pb-24 md:mt-0 md:pt-0 md:pb-0">
       <div
         className="relative"
         style={{ height: `${features.length * 100}vh` }}
@@ -83,8 +83,8 @@ export function FeatureShowcase() {
           <FeatureTrigger key={i} index={i} onActive={handleActive} />
         ))}
 
-        <div className="sticky top-24 z-10 flex h-[calc(100dvh-6rem)] items-center md:top-0 md:h-screen">
-          <div className="mx-auto grid w-full max-w-6xl items-center gap-12 px-6 lg:grid-cols-2 lg:gap-20">
+        <div className="sticky top-[5.5rem] z-10 flex min-h-[calc(100dvh-5.5rem)] items-start pt-6 pb-10 md:top-0 md:h-screen md:min-h-0 md:items-center md:pt-0 md:pb-0">
+          <div className="mx-auto grid w-full max-w-6xl items-center gap-16 px-6 md:gap-12 lg:grid-cols-2 lg:gap-20">
             <div className="order-2 lg:order-1">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -94,7 +94,7 @@ export function FeatureShowcase() {
                   exit={{ opacity: 0, y: -28 }}
                   transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <div className="mb-4 flex gap-2">
+                  <div className="mb-6 flex gap-2 md:mb-4">
                     {features.map((_, i) => (
                       <motion.div
                         key={i}
@@ -110,15 +110,15 @@ export function FeatureShowcase() {
                   <h2 className="text-3xl font-bold tracking-tight text-black sm:text-4xl lg:text-5xl">
                     {features[activeIndex].headline}
                   </h2>
-                  <p className="mt-4 max-w-md text-base leading-relaxed text-black/50 sm:text-lg">
+                  <p className="mt-5 max-w-md text-base leading-relaxed text-black/50 sm:mt-4 sm:text-lg">
                     {features[activeIndex].description}
                   </p>
                 </motion.div>
               </AnimatePresence>
             </div>
 
-            <div className="order-1 flex justify-center lg:order-2">
-              <div className="relative h-[580px] w-[280px] sm:h-[620px] sm:w-[300px]">
+            <div className="order-1 flex justify-center pt-2 lg:order-2 lg:pt-0">
+              <div className="relative h-[500px] w-[242px] sm:h-[580px] sm:w-[280px] md:h-[620px] md:w-[300px]">
                 {features.map((feature, i) => {
                   const isActive = i === activeIndex;
                   const ScreenComponent = feature.screen;

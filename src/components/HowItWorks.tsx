@@ -42,7 +42,7 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section className="py-24 sm:py-32">
+    <section className="pt-32 pb-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <ScrollReveal>
           <h2 className="text-center text-3xl font-bold tracking-tight text-black sm:text-4xl">
