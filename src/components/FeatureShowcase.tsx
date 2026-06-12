@@ -12,6 +12,7 @@ const features: {
   imageAlt: string;
   framed?: boolean;
   imageClass?: string;
+  clipTop?: number;
 }[] = [
   {
     headline: "Create groups for anything.",
@@ -29,7 +30,8 @@ const features: {
     image: "/friends-newmockup.png",
     imageAlt: "Breezy Friends screen showing outstanding balances",
     framed: true,
-    imageClass: "object-cover object-[50%_42%]",
+    imageClass: "object-cover object-top",
+    clipTop: 9,
   },
   {
     headline: "Add expenses in seconds.",
@@ -46,6 +48,44 @@ const features: {
     imageAlt: "Breezy Settle Up screen with payment options",
   },
 ];
+
+function MockupScreenImage({
+  src,
+  alt,
+  className = "object-cover object-top",
+  clipTop = 0,
+  priority = false,
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+  clipTop?: number;
+  priority?: boolean;
+}) {
+  const image = (
+    <Image
+      src={src}
+      alt={alt}
+      fill
+      sizes="300px"
+      className={className}
+      priority={priority}
+    />
+  );
+
+  if (clipTop <= 0) return image;
+
+  return (
+    <div className="absolute inset-0 overflow-hidden bg-[#f5f5f7]">
+      <div
+        className="absolute inset-x-0 bottom-0 overflow-hidden"
+        style={{ top: `${clipTop}%` }}
+      >
+        <div className="relative h-full w-full">{image}</div>
+      </div>
+    </div>
+  );
+}
 
 function FeatureTrigger({
   index,
@@ -141,12 +181,11 @@ export function FeatureShowcase() {
                     >
                       {feature.framed ? (
                         <PhoneMockup>
-                          <Image
+                          <MockupScreenImage
                             src={feature.image}
                             alt={feature.imageAlt}
-                            fill
-                            sizes="300px"
                             className={feature.imageClass ?? "object-cover object-top"}
+                            clipTop={feature.clipTop}
                             priority={i <= 1}
                           />
                         </PhoneMockup>

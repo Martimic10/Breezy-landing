@@ -26,15 +26,13 @@ export function Navbar() {
       initial={false}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
-        scrolled ? "px-0 pt-0" : "px-4 pt-4 sm:px-6 sm:pt-5"
-      }`}
+      className="fixed top-0 right-0 left-0 z-50 px-4 pt-4 sm:px-6 sm:pt-5"
     >
       <div
-        className={`mx-auto max-w-6xl transition-all duration-500 ${
+        className={`mx-auto max-w-6xl rounded-2xl border backdrop-blur-2xl transition-all duration-500 ${
           scrolled
-            ? "rounded-none border-b border-black/[0.06] bg-white/80 shadow-sm shadow-black/[0.04] backdrop-blur-2xl"
-            : "rounded-2xl border border-white/60 bg-white/40 shadow-[0_8px_40px_rgba(0,0,0,0.08)] backdrop-blur-2xl"
+            ? "border-black/[0.08] bg-white/90 shadow-[0_8px_40px_rgba(0,0,0,0.12)]"
+            : "border-white/60 bg-white/40 shadow-[0_8px_40px_rgba(0,0,0,0.08)]"
         }`}
       >
         <nav className="flex items-center justify-between px-5 py-3.5 sm:px-6">
