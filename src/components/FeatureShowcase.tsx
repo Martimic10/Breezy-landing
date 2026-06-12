@@ -11,8 +11,6 @@ const features: {
   image: string;
   imageAlt: string;
   framed?: boolean;
-  imageClass?: string;
-  clipTop?: number;
 }[] = [
   {
     headline: "Create groups for anything.",
@@ -21,7 +19,6 @@ const features: {
     image: "/Groups-newmockup.png",
     imageAlt: "Breezy Groups screen showing shared expense groups",
     framed: true,
-    imageClass: "object-cover object-top",
   },
   {
     headline: "Keep track of friends.",
@@ -30,8 +27,6 @@ const features: {
     image: "/friends-newmockup.png",
     imageAlt: "Breezy Friends screen showing outstanding balances",
     framed: true,
-    imageClass: "object-cover object-top",
-    clipTop: 9,
   },
   {
     headline: "Add expenses in seconds.",
@@ -48,44 +43,6 @@ const features: {
     imageAlt: "Breezy Settle Up screen with payment options",
   },
 ];
-
-function MockupScreenImage({
-  src,
-  alt,
-  className = "object-cover object-top",
-  clipTop = 0,
-  priority = false,
-}: {
-  src: string;
-  alt: string;
-  className?: string;
-  clipTop?: number;
-  priority?: boolean;
-}) {
-  const image = (
-    <Image
-      src={src}
-      alt={alt}
-      fill
-      sizes="300px"
-      className={className}
-      priority={priority}
-    />
-  );
-
-  if (clipTop <= 0) return image;
-
-  return (
-    <div className="absolute inset-0 overflow-hidden bg-[#f5f5f7]">
-      <div
-        className="absolute inset-x-0 bottom-0 overflow-hidden"
-        style={{ top: `${clipTop}%` }}
-      >
-        <div className="relative h-full w-full">{image}</div>
-      </div>
-    </div>
-  );
-}
 
 function FeatureTrigger({
   index,
@@ -118,7 +75,7 @@ export function FeatureShowcase() {
   const handleActive = useCallback((index: number) => setActiveIndex(index), []);
 
   return (
-    <section id="features" className="relative mt-36 pt-20 pb-24 md:mt-0 md:pt-0 md:pb-0">
+    <section id="features" className="relative mt-40 pt-28 pb-24 md:mt-24 md:pt-20 md:pb-24">
       <div
         className="relative"
         style={{ height: `${features.length * 100}vh` }}
@@ -127,7 +84,7 @@ export function FeatureShowcase() {
           <FeatureTrigger key={i} index={i} onActive={handleActive} />
         ))}
 
-        <div className="sticky top-[6rem] z-10 flex min-h-[calc(100dvh-6rem)] items-start pt-10 pb-10 md:top-0 md:h-screen md:min-h-0 md:items-center md:pt-0 md:pb-0">
+        <div className="sticky top-[5.75rem] z-10 flex min-h-[calc(100dvh-5.75rem)] items-start pt-8 pb-10 sm:top-[6rem] sm:min-h-[calc(100dvh-6rem)] sm:items-center sm:pt-0 sm:pb-0">
           <div className="mx-auto grid w-full max-w-6xl items-center gap-16 px-6 md:gap-12 lg:grid-cols-2 lg:gap-20">
             <div className="order-2 lg:order-1">
               <AnimatePresence mode="wait">
@@ -181,11 +138,12 @@ export function FeatureShowcase() {
                     >
                       {feature.framed ? (
                         <PhoneMockup>
-                          <MockupScreenImage
+                          <Image
                             src={feature.image}
                             alt={feature.imageAlt}
-                            className={feature.imageClass ?? "object-cover object-top"}
-                            clipTop={feature.clipTop}
+                            fill
+                            sizes="300px"
+                            className="object-cover object-top"
                             priority={i <= 1}
                           />
                         </PhoneMockup>
