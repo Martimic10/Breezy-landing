@@ -23,7 +23,7 @@ export function Navbar() {
 
   return (
     <motion.header
-      initial={{ y: -20, opacity: 0 }}
+      initial={false}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
@@ -58,7 +58,7 @@ export function Navbar() {
               href="#cta"
               className="ml-2 rounded-full bg-black px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-black/15 transition-all hover:bg-black/85 hover:shadow-lg hover:shadow-black/20"
             >
-              Join the Beta
+              Download
             </a>
           </div>
 
@@ -100,7 +100,7 @@ export function Navbar() {
                   onClick={() => setMobileOpen(false)}
                   className="mt-2 rounded-full bg-black px-5 py-3 text-center text-sm font-semibold text-white"
                 >
-                  Join the Beta
+                  Download on the App Store
                 </a>
               </div>
             </motion.div>

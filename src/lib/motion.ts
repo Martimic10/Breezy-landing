@@ -8,9 +8,8 @@ export const fadeInUp = {
 };
 
 export const staggerContainer = {
-  hidden: { opacity: 0 },
+  hidden: {},
   visible: {
-    opacity: 1,
     transition: { staggerChildren: 0.1, delayChildren: 0.1 },
   },
 };

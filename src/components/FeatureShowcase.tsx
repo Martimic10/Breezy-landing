@@ -3,25 +3,30 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { motion, useInView, AnimatePresence } from "framer-motion";
+import { PhoneMockup } from "./iPhoneMockup";
+
 const features: {
   headline: string;
   description: string;
   image: string;
   imageAlt: string;
+  framed?: boolean;
 }[] = [
   {
     headline: "Create groups for anything.",
     description:
       "From golf trips and vacations to roommates and events, organize expenses in dedicated groups and keep everyone on the same page.",
-    image: "/Group-mockup.png",
+    image: "/Groups-newmockup.png",
     imageAlt: "Breezy Groups screen showing shared expense groups",
+    framed: true,
   },
   {
     headline: "Keep track of friends.",
     description:
       "View balances, shared groups, and activity with the people you split expenses with most.",
-    image: "/friends-mockup.png",
+    image: "/friends-newmockup.png",
     imageAlt: "Breezy Friends screen showing outstanding balances",
+    framed: true,
   },
   {
     headline: "Add expenses in seconds.",
@@ -131,14 +136,29 @@ export function FeatureShowcase() {
                       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                       style={{ pointerEvents: isActive ? "auto" : "none" }}
                     >
-                      <Image
-                        src={feature.image}
-                        alt={feature.imageAlt}
-                        width={300}
-                        height={650}
-                        className="h-auto w-full drop-shadow-2xl drop-shadow-black/15"
-                        priority={i <= 1}
-                      />
+                      {feature.framed ? (
+                        <div className="origin-center scale-[0.86] sm:scale-100">
+                          <PhoneMockup>
+                            <Image
+                              src={feature.image}
+                              alt={feature.imageAlt}
+                              fill
+                              sizes="300px"
+                              className="object-cover object-top"
+                              priority={i <= 1}
+                            />
+                          </PhoneMockup>
+                        </div>
+                      ) : (
+                        <Image
+                          src={feature.image}
+                          alt={feature.imageAlt}
+                          width={300}
+                          height={650}
+                          className="h-auto w-full drop-shadow-2xl drop-shadow-black/15"
+                          priority={i <= 1}
+                        />
+                      )}
                     </motion.div>
                   );
                 })}
