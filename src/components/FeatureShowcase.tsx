@@ -11,6 +11,7 @@ const features: {
   image: string;
   imageAlt: string;
   framed?: boolean;
+  imageClass?: string;
 }[] = [
   {
     headline: "Create groups for anything.",
@@ -19,6 +20,7 @@ const features: {
     image: "/Groups-newmockup.png",
     imageAlt: "Breezy Groups screen showing shared expense groups",
     framed: true,
+    imageClass: "object-cover object-top",
   },
   {
     headline: "Keep track of friends.",
@@ -27,6 +29,7 @@ const features: {
     image: "/friends-newmockup.png",
     imageAlt: "Breezy Friends screen showing outstanding balances",
     framed: true,
+    imageClass: "object-cover object-[50%_42%]",
   },
   {
     headline: "Add expenses in seconds.",
@@ -119,7 +122,7 @@ export function FeatureShowcase() {
             </div>
 
             <div className="order-1 flex justify-center pt-4 lg:order-2 lg:pt-0">
-              <div className="relative h-[500px] w-[242px] sm:h-[580px] sm:w-[280px] md:h-[620px] md:w-[300px]">
+              <div className="relative h-[640px] w-[280px] sm:h-[660px] sm:w-[300px]">
                 {features.map((feature, i) => {
                   const isActive = i === activeIndex;
 
@@ -137,18 +140,16 @@ export function FeatureShowcase() {
                       style={{ pointerEvents: isActive ? "auto" : "none" }}
                     >
                       {feature.framed ? (
-                        <div className="origin-center scale-[0.86] sm:scale-100">
-                          <PhoneMockup>
-                            <Image
-                              src={feature.image}
-                              alt={feature.imageAlt}
-                              fill
-                              sizes="300px"
-                              className="object-cover object-top"
-                              priority={i <= 1}
-                            />
-                          </PhoneMockup>
-                        </div>
+                        <PhoneMockup>
+                          <Image
+                            src={feature.image}
+                            alt={feature.imageAlt}
+                            fill
+                            sizes="300px"
+                            className={feature.imageClass ?? "object-cover object-top"}
+                            priority={i <= 1}
+                          />
+                        </PhoneMockup>
                       ) : (
                         <Image
                           src={feature.image}
